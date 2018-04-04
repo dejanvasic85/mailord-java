@@ -1,5 +1,6 @@
 package com.gandalf;
 
+import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
@@ -13,7 +14,17 @@ public class EmailTemplateTest extends JerseyTest {
 
     protected Application configure(){
         enable(TestProperties.LOG_TRAFFIC);
-        return new ResourceConfig().packages("com.gandalf");
+        enable(TestProperties.DUMP_ENTITY);
+
+        final EmailTemplateRepository emailTemplateRepository = new EmailTemplateRepository();
+
+        return new ResourceConfig().packages("com.gandalf")
+                .register(new AbstractBinder() {
+                    @Override
+                    protected void configure() {
+                        bind(emailTemplateRepository).to(EmailTemplateRepository.class);
+                    }
+                });
     }
 
     final static String BASE_PATH = "email-templates";
