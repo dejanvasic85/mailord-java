@@ -23,20 +23,8 @@ public class Main {
     public static HttpServer startServer() {
 
         final EmailTemplateRepository emailTemplateRepository = new EmailTemplateRepository();
-
-        // create a resource config that scans for JAX-RS resources and providers
-        // in com.gandalf package
-        final ResourceConfig rc = new ResourceConfig().packages("com.gandalf")
-                .register(new AbstractBinder() {
-                    @Override
-                    protected void configure() {
-                        bind(emailTemplateRepository).to(EmailTemplateRepository.class);
-                    }
-                });
-
-        // create and start a new instance of grizzly http server
-        // exposing the Jersey application at BASE_URI
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+        final MailordApplication mailordApplication = new MailordApplication(emailTemplateRepository);
+        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), mailordApplication);
     }
 
     /**

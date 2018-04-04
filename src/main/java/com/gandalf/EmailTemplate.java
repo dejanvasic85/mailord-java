@@ -7,6 +7,7 @@ public class EmailTemplate {
     private String body;
     private String accountId;
 
+
     public static EmailTemplate Default(){
         return new EmailTemplate();
     }
@@ -50,5 +51,4 @@ public class EmailTemplate {
     public void setBody(String body) {
         this.body = body;
     }
-
 }

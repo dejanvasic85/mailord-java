@@ -6,7 +6,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
 import java.util.Collection;
 
 
@@ -30,6 +29,7 @@ public class EmailTemplateResource {
     public EmailTemplate getById(@PathParam("id") String id){
 
 
+
            EmailTemplate template = this.emailTemplateRepository.getEmailTemplates()
                    .stream()
                    .filter(l -> l.getId().equals(id))
@@ -40,4 +40,6 @@ public class EmailTemplateResource {
 
            return template;
     }
+
+
 }
