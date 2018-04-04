@@ -11,8 +11,8 @@ import static org.junit.Assert.assertEquals;
 public class EmailTemplateTest extends JerseyTest {
 
     protected Application configure(){
-        enable(TestProperties.LOG_TRAFFIC);
-        enable(TestProperties.DUMP_ENTITY);
+        //enable(TestProperties.LOG_TRAFFIC);
+        //enable(TestProperties.DUMP_ENTITY);
 
         final EmailTemplateRepository emailTemplateRepository = new EmailTemplateRepository();
         return new MailordApplication(emailTemplateRepository);
