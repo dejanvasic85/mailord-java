@@ -1,8 +1,9 @@
 package com.gandalf;
 
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Collection;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class EmailTemplateRepository {
@@ -11,10 +12,10 @@ public class EmailTemplateRepository {
 
 
     EmailTemplateRepository() {
-        this.templates = new HashMap<>();
+        this.templates = new ConcurrentHashMap<>();
 
         EmailTemplate t1 = new EmailTemplate();
-        t1.setId("123");
+        t1.setId(UUID.randomUUID().toString());
         t1.setTitle("test-template");
         t1.setSubject("Hello");
         t1.setBody("Welcome to the dark side of");
@@ -23,7 +24,7 @@ public class EmailTemplateRepository {
         templates.put(t1.getId(), t1);
 
         EmailTemplate t2 = new EmailTemplate();
-        t2.setId("456");
+        t2.setId(UUID.randomUUID().toString());
         t2.setTitle("test-template2");
         t2.setSubject("Whoa");
         t2.setBody("Whoa");
@@ -35,5 +36,12 @@ public class EmailTemplateRepository {
 
     Collection<EmailTemplate> getEmailTemplates(){
         return this.templates.values();
+    }
+
+
+    EmailTemplate addEmailTemplate(EmailTemplate emailTemplate){
+        emailTemplate.setId(UUID.randomUUID().toString());
+        this.templates.put(emailTemplate.getId(), emailTemplate);
+        return emailTemplate;
     }
 }

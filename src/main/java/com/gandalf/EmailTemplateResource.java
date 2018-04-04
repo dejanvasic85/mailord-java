@@ -1,9 +1,8 @@
 package com.gandalf;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import com.sun.java.swing.plaf.motif.MotifEditorPaneUI;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.util.Collection;
@@ -28,8 +27,6 @@ public class EmailTemplateResource {
     @Produces(MediaType.APPLICATION_JSON)
     public EmailTemplate getById(@PathParam("id") String id){
 
-
-
            EmailTemplate template = this.emailTemplateRepository.getEmailTemplates()
                    .stream()
                    .filter(l -> l.getId().equals(id))
@@ -41,5 +38,10 @@ public class EmailTemplateResource {
            return template;
     }
 
-
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public EmailTemplate addEmailTemplate(EmailTemplate emailTemplate){
+        return this.emailTemplateRepository.addEmailTemplate(emailTemplate);
+    }
 }
