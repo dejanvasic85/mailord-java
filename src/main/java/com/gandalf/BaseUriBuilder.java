@@ -11,6 +11,6 @@ class BaseUriBuilder {
     }
 
     URI build() {
-        return URI.create(String.format("http://%s:%d", appConfig.getBaseUri(), appConfig.getPortNumber()));
+        return URI.create(String.format("http://%s:%d/api/", appConfig.getBaseUri(), appConfig.getPortNumber()));
     }
 }
