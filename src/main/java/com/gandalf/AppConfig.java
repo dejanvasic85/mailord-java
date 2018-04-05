@@ -5,7 +5,7 @@ import java.util.Optional;
 class AppConfig {
 
     private String readEnvOrDefault(String key, String defaultValue) {
-        return Optional.ofNullable(System.getenv("PORT_NUMBER")).orElse(defaultValue);
+        return Optional.ofNullable(System.getenv(key)).orElse(defaultValue);
     }
 
     Integer getPortNumber() {
