@@ -20,7 +20,8 @@ public class EmailTemplateTest extends JerseyTest {
         //enable(TestProperties.DUMP_ENTITY);
 
         final EmailTemplateRepository emailTemplateRepository = new EmailTemplateRepository();
-        return new MailordApplication(emailTemplateRepository);
+        final AppConfig config = new AppConfig();
+        return new MailordApplication(config, emailTemplateRepository);
     }
 
     final static String BASE_PATH = "email-templates";
