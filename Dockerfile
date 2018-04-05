@@ -1,18 +1,14 @@
-FROM maven:3.3.9-jdk-8
+FROM java:8
+
+MAINTAINER Dejan Vasic
 
 ENV PORT_NUMBER=8080
 ENV BASE_ADDRESS=0.0.0.0
 
-RUN mkdir -p /opt/app
-WORKDIR /opt/app
+WORKDIR /app
 
-COPY pom.xml /opt/app/
-RUN mvn install
-
-COPY src /opt/app/src
-RUN mvn package
+COPY target /app
 
 EXPOSE 8080
 
-#CMD ["mvn", "exec:java"]
-ENTRYPOINT mvn exec:java
+CMD ["java","-jar","/app/mailord-api-1.0-SNAPSHOT-jar-with-dependencies.jar"]
