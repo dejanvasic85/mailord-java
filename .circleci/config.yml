@@ -6,7 +6,6 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/openjdk:8-jdk
 
     working_directory: ~/repo
@@ -34,12 +33,6 @@ jobs:
 
       # run tests!
       - run: mvn test
-  build:
-    docker:
-      - docker:17.05.0-ce-git
-    working_directory: ~/repo
-    steps:
-      - run:
-          name: Build application Docker image
-          command: |
-            docker build -t . apthletic/anteup-api
+
+      - setup_remote_docker:
+          version: 17.05.0-ce
