@@ -34,3 +34,12 @@ jobs:
 
       # run tests!
       - run: mvn test
+  build:
+    docker:
+      - docker:17.05.0-ce-git
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build -t . apthletic/anteup-api
