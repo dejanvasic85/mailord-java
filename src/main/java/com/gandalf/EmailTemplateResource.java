@@ -1,7 +1,5 @@
 package com.gandalf;
 
-import com.sun.java.swing.plaf.motif.MotifEditorPaneUI;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -32,8 +30,6 @@ public class EmailTemplateResource {
                    .filter(l -> l.getId().equals(id))
                    .findFirst()
                    .orElse(EmailTemplate.Default());
-
-           System.out.println("Found template " + template.getId());
 
            return template;
     }
