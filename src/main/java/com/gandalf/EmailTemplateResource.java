@@ -1,5 +1,6 @@
 package com.gandalf;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -9,14 +10,17 @@ import java.util.Collection;
 @Path("email-templates")
 public class EmailTemplateResource {
 
-    @Context
+    @Inject
     EmailTemplateRepository emailTemplateRepository;
+
+    @Inject
+    private EmailService emailService;
 
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<EmailTemplate> getAllEmailTemplates(){
-        return this.emailTemplateRepository.getEmailTemplates();
+        return this.emailService.getTemplates();
     }
 
 
